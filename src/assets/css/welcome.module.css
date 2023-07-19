@@ -1,0 +1,104 @@
+ .welcome{
+    background: linear-gradient(to bottom, rgba(255,128,255,0.5), rgba(0,0,128,0.5));
+
+ }
+ 
+ .h1 {
+     font-family: 'Roboto', sans-serif;
+     font-size: 4em;
+     overflow: hidden;
+     white-space: nowrap;
+     margin: 0 auto;
+     font-weight: bold;
+     border-right: 0.15em solid white;
+     animation: typing 5s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+ }
+
+ .containerWelcome {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+     min-height: 100vh;
+ }
+
+ .button{
+    height: 50px;
+    transition: transform 0.1s; 
+    font-size: 20px;
+ }
+ .button:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(2px);
+  }
+ @keyframes typing {
+     from {
+         width: 0;
+     }
+ }
+
+ @keyframes blink-caret {
+     from, to {
+         border-color: transparent;
+     }
+
+     50% {
+         border-color: white;
+     }
+ }
+
+
+ /*telephone Android*/
+
+ @media screen and (min-width: 360px) and (max-width: 767px){
+    .h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2em;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        font-weight: bold;
+        border-right: 0.15em solid white;
+        animation: typing 5s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    }
+   
+
+ }
+ /*telephone Android*/
+
+  /*telephone mini-Android*/
+ @media screen and (max-width: 320px){
+    .h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1.5em;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        font-weight: bold;
+        border-right: 0.15em solid white;
+        animation: typing 5s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    }
+   
+
+ }
+
+/*telephone mini-Android*/
+ 
+/*Tablette*/
+  @media screen and (min-width: 768px) and (max-width: 991px) {
+    .h1 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 3em;
+        overflow: hidden;
+        white-space: nowrap;
+        margin: 0 auto;
+        font-weight: bold;
+        border-right: 0.15em solid white;
+        animation: typing 5s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
+    }
+    .button{
+        height: 60px;
+        transition: transform 0.1s; 
+        font-size: 20px;
+     }
+}

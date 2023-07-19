@@ -1,0 +1,17 @@
+.cardHoverEffect:hover{
+    transform: translateY(-5px); /* Décalage vers le haut de 5 pixels (vous pouvez ajuster cette valeur selon votre préférence) */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.767); /* Ajout d'une ombre */
+    background-color: #2e93c2; /* Couleur de fond pour le survol */
+    color: white;
+}
+
+.cardHoverEffect{
+    transition: all 0.3s ease; /* Ajustez la durée de la transition selon votre préférence */
+    cursor: pointer;
+
+}
+.btnSup:hover{
+    color: red;
+}
+
+/* Dans votre fichier articles.module.css */
