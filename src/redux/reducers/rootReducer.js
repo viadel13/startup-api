@@ -26,7 +26,7 @@ export const {showArticles, SelectApiValue} = blogSlice.actions;
 
 export const fetchArticles = ()=> async (dispatch)=>{
     try {
-        const response = await axios.get('http://localhost:5000/articles');
+        const response = await axios.get('https://api-blog-v7sl.onrender.com/articles');
         dispatch(showArticles(response.data));
 
     } catch (error) {
@@ -36,7 +36,7 @@ export const fetchArticles = ()=> async (dispatch)=>{
 
 export const fecthAddArticle = (datas)=> async(dispatch)=>{
     try {
-        const response = await axios.post('http://localhost:5000/articles', {datas});
+        const response = await axios.post('https://api-blog-v7sl.onrender.com/articles', {datas});
         console.log('reponse', response);
     } catch (error) {
         
