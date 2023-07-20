@@ -1,10 +1,5 @@
-// import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  fetchArticles,
-  AddArticles,
-  dropArticle
-} from "../../../../redux/reducers/rootReducer";
+import {fetchArticles,AddArticles,dropArticle} from "../../../../redux/reducers/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../../assets/css/articles.module.css";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -74,7 +69,6 @@ const Articles = () => {
        <div>
       <div className="container">
         <h2 className="display-5 mb-5 ">NOS ARTICLES</h2>
-
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {load ? (
             articles &&

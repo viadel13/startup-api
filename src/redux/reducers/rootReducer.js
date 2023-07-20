@@ -45,7 +45,7 @@ export const {showArticles, SelectApiValue, AddArticles, dropArticle} = blogSlic
 export const fetchArticles = ()=> async (dispatch)=>{
     try {
         // const response = await axios.get('http://127.0.0.1:5000/articles');
-        await axios.get('https://api-blog-v7sl.onrender.com/articles');
+        const response = await axios.get('https://api-blog-v7sl.onrender.com/articles');
   
         dispatch(showArticles(response.data));
 
