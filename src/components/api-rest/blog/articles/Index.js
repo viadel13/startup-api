@@ -1,37 +1,59 @@
 // import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchArticles } from "../../../../redux/reducers/rootReducer";
+import {
+  fetchArticles,
+  AddArticles,
+  dropArticle
+} from "../../../../redux/reducers/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../../../../assets/css/articles.module.css";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Tooltip } from "react-tooltip";
+import { io } from "socket.io-client";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import ModalDel from "../../../modal/ModalDel";
 
 const Articles = () => {
   const [load, setLoad] = useState(false);
+  const[detailArticleDel, setDetailArticleDel]= useState({});
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const articles = useSelector((state) => state.articles.articles);
-  const [hasReloaded, setHasReloaded] = useState(false);
+
+  useEffect(() => {
+    // const socket = io("http://localhost:3001");
+    const socket = io("https://api-blog-v7sl.onrender.com");
+    socket.on("articleDel", (article) => {
+      dispatch(dropArticle(article.id));
+      toast.success(() => (
+        <p>
+          Article <span className="text-danger"> {article.titre} </span> supprimer
+          avec success
+        </p>
+      ));
+    });
+    return () => {
+      socket.off("articleAdded");
+      socket.disconnect();
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchArticles());
-  }, [dispatch]);
-  useEffect(() => {
-    // Vérifie si le rechargement a déjà eu lieu pour éviter de recharger à nouveau
-    if (!hasReloaded) {
-      // Marque le rechargement comme effectué
-      setHasReloaded(true);
-      // Recharge la page après 2 secondes
-      const timeoutId = setTimeout(() => {
-        window.location.reload();
-    
-      }, 1000);
+    // const socket = io("http://localhost:3001");
+    const socket = io("https://api-blog-v7sl.onrender.com");
+    socket.on("articleAdded", (newArticle) => {
+      // console.log("Nouvel article ajouté :", newArticle);
+      dispatch(AddArticles(newArticle));
+    });
 
-      // Nettoyage du timeout pour annuler le rechargement si le composant est démonté avant les 2 secondes
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }
-  }, [hasReloaded]);
+    // Nettoyage de l'écouteur d'événement lorsque le composant est démonté
+    return () => {
+      socket.off("articleAdded");
+      socket.disconnect();
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (articles) {
@@ -41,16 +63,23 @@ const Articles = () => {
     }
   }, [articles]);
 
+  const handleDelete = (id, titre)=>{
+    setShow(true);
+    setDetailArticleDel({...detailArticleDel, id, titre});
+  }
+
   return (
-    <div>
+
+    <>
+       <div>
       <div className="container">
         <h2 className="display-5 mb-5 ">NOS ARTICLES</h2>
 
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {load ? (
             articles &&
-            articles[0] &&
-            articles[0].map((article) => {
+            articles &&
+            articles.map((article) => {
               return (
                 <div className="col" key={article._id}>
                   <div className={`card h-100 ${styles.cardHoverEffect}`}>
@@ -63,12 +92,13 @@ const Articles = () => {
                       <small className="text-muted me-auto">
                         {article.categorie}
                       </small>
-                      {/* <AiOutlineEye /> */}
+                      <span onClick={()=>handleDelete(article._id, article.titre)}>
+                        <AiOutlineDelete
+                          size={25}
+                          className={`my-anchor-element ${styles.btnSup}`}
+                        />
+                      </span>
 
-                      <AiOutlineDelete
-                        size={25}
-                        className={`my-anchor-element ${styles.btnSup}`}
-                      />
                       <Tooltip anchorSelect=".my-anchor-element" place="top">
                         Supprimer
                       </Tooltip>
@@ -83,6 +113,9 @@ const Articles = () => {
         </div>
       </div>
     </div>
+    <ModalDel show={show} setShow={setShow} detailArticleDel={detailArticleDel} />
+    </>
+   
   );
 };
 
