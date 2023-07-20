@@ -29,7 +29,7 @@ const Articles = () => {
       ));
     });
     return () => {
-      socket.off("articleAdded");
+      socket.off("articleDel");
       socket.disconnect();
     };
   }, [dispatch]);
