@@ -38,7 +38,7 @@ const Articles = () => {
   useEffect(() => {
     dispatch(fetchArticles());
     // const socket = io("http://localhost:3001");
-    const socket = io("https://api-blog-v7sl.onrender.com:3001");
+    const socket = io("https://api-blog-v7sl.onrender.com");
     socket.on("articleAdded", (newArticle) => {
       console.log("Nouvel article ajouté :", newArticle);
       // console.log(newArticle)
