@@ -20,6 +20,7 @@ const Articles = () => {
     // const socket = io("http://localhost:3001");
     const socket = io("https://api-blog-v7sl.onrender.com");
     socket.on("articleDel", (article) => {
+      console.log('article supprimer est  : ', article);
       dispatch(dropArticle(article.id));
       toast.success(() => (
         <p>
@@ -28,7 +29,7 @@ const Articles = () => {
         </p>
       ));
     });
-    return () => {
+    return () => { 
       socket.off("articleDel");
       socket.disconnect();
     };
@@ -39,9 +40,11 @@ const Articles = () => {
     // const socket = io("http://localhost:3001");
     const socket = io("https://api-blog-v7sl.onrender.com");
     socket.on("articleAdded", (newArticle) => {
-      // console.log("Nouvel article ajouté :", newArticle);
+      console.log("Nouvel article ajouté :", newArticle);
+      // console.log(newArticle)
       dispatch(AddArticles(newArticle));
-    });
+      
+    }, [dispatch]);
 
     // Nettoyage de l'écouteur d'événement lorsque le composant est démonté
     return () => {
