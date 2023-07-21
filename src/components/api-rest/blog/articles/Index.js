@@ -18,7 +18,7 @@ const Articles = () => {
 
   useEffect(() => {
     // const socket = io("http://localhost:3001");
-    const socket = io("https://api-blog-v7sl.onrender.com:3001");
+    const socket = io("https://api-blog-v7sl.onrender.com");
     socket.on("articleDel", (article) => {
       console.log('article supprimer est  : ', article);
       dispatch(dropArticle(article.id));
