@@ -67,8 +67,8 @@ export const fecthAddArticle = (datas)=> async()=>{
 
 export const fecthDeleteArticle = (data)=> async()=>{
     try {
-    //   await axios.delete(`http://127.0.0.1:5000/article/${data}`);
-      await axios.delete(`https://api-blog-v7sl.onrender.com/article/${data}`);
+      await axios.delete(`http://127.0.0.1:5000/article/${data}`);
+    //   await axios.delete(`https://api-blog-v7sl.onrender.com/article/${data}`);
     } catch (error) {
         
     }
