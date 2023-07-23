@@ -8,6 +8,8 @@ const Welcome = () => {
   useEffect(() => {
     // Efface la clé 'selectApi' du stockage local
     localStorage.removeItem('selectApi');
+    localStorage.removeItem('getArticle');
+
   }, []);
 
   return (

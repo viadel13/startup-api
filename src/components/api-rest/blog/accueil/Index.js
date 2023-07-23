@@ -22,14 +22,18 @@ const Blog = () => {
  
   if(view){
     return ( 
-      <div className={`${styles.blog}`}>
+      <>
+        <Navbar />
+          <div className={`${styles.blog}`}>
         <Helmet>
           <title>Blog</title>
         </Helmet>
-        <Navbar />
+      
         <Outlet />
         
       </div>
+      </>
+    
     );
   }
 

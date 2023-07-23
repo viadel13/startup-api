@@ -7,7 +7,7 @@ import { IoCreateOutline } from "react-icons/io5";
 const Navbar = () => {
   return (
     <>
-      <nav className={`navbar bg-light fixed-top ${styles.nav} `}>
+      <nav className={`navbar bg-light fixed-top ${styles.nav} `} >
         <div className="container-fluid d-flex justify-content-center">
           <Link className="navbar-brand fs-2" to="/">
             API-BLOG
@@ -38,12 +38,12 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item me-4">
-                  <Link className="nav-link fs-5" to="articles">
+                  <Link className="nav-link fs-5" to="/blog/articles">
                     <HiOutlineNewspaper /> Articles
                   </Link>
                 </li>
                 <li className="nav-item me-4">
-                  <Link className="nav-link fs-5" to="createArticles">
+                  <Link className="nav-link fs-5" to="/blog/createArticles">
                     <IoCreateOutline /> Create Articles
                   </Link>
                 </li>
@@ -67,12 +67,12 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li className="nav-item me-4">
-                    <Link className="nav-link fs-5" to="articles">
+                    <Link className="nav-link fs-5" to="/blog/articles">
                       <HiOutlineNewspaper /> Articles
                     </Link>
                   </li>
                   <li className="nav-item me-4">
-                    <Link className="nav-link fs-5" to="createArticles">
+                    <Link className="nav-link fs-5" to="/blog/createArticles">
                       <IoCreateOutline /> Create Articles
                     </Link>
                   </li>

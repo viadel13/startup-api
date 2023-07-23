@@ -1,24 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fecthAddArticle } from "../../../../redux/reducers/rootReducer";
 import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import styles from '../../../../assets/css/create.module.css'
 
 const CreateArticles = () => {
   const [titre, setTitre] = useState("");
   const [categorie, setCategorie] = useState("");
-  const [contenu, setContenu] = useState("");
+  const [content, setContent] = useState("");
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+ 
+  useEffect(()=>{
+    localStorage.removeItem('getArticle');
+    localStorage.removeItem('getArticle');
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(titre && categorie && contenu){
-      dispatch(fecthAddArticle({titre, categorie, contenu}));
+    if(titre && categorie && content){
+      dispatch(fecthAddArticle({titre, categorie, content}));
       setCategorie('');
       setTitre('');
-      setContenu('');
+      setContent('');
       toast.success(() => (
         <div>
           Ajouté avec succès ! Voir <a href="/blog">Articles</a>
@@ -28,14 +32,16 @@ const CreateArticles = () => {
       toast("Veuillez remplir tous les champs svp!");
       setCategorie('');
       setTitre('');
-      setContenu('');
+      setContent('');
     }
 
   };
 
   return (
-    <div className="container py-4">
-      <h2 className="display-5 mb-5"> Nouvel article</h2>
+    <>
+     <h2 className="display-5 container "> Nouvel article</h2>
+       <div className={`container py-4 ${styles.create}`}>
+     
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-4">
           <label htmlFor="inputTitre" className="mb-2">Titre</label>
@@ -55,8 +61,8 @@ const CreateArticles = () => {
             id="inputContenu"
             rows="5"
             placeholder="Entrez le contenu"
-            value={contenu}
-            onChange={(e) => setContenu(e.target.value)}
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
         <div className="form-group mb-4">
@@ -75,6 +81,8 @@ const CreateArticles = () => {
         </button>
       </form>
     </div>
+    </>
+ 
   );
 };
 

@@ -1,18 +1,52 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../navbar/Index";
+import styles from "../../../../assets/css/article.module.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Article = () => {
-  return (
-    <>
-    <Navbar />
-      <div className="container">
-        <h2 className="display-5 text-center">
-          Article : Apprendre a programmer
-        </h2>
-        <p>asasasasasasasasasasasasasasa</p>
+  const idArticle = localStorage.getItem("getArticle");
+  const [view, setView] = useState(false);
+  const [getArticle, setGetArticle] = useState();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("getArticle")) {
+      setGetArticle(JSON.parse(localStorage.getItem("getArticle")));
+    } else {
+      setGetArticle("");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!idArticle) {
+      setView(false);
+      navigate("/blog/articles");
+    } else {
+      setView(true);
+    }
+  }, [idArticle, navigate]);
+
+  if (view) {
+    return (
+      <div >
+        <Navbar />
+        <div className={styles.article}>
+        <h2 className="display-5 mb-5 container ">ARTICLE</h2>
+          <div className={`container card`}>
+            
+            <h2 className={` text-center ${styles.h2}`}>
+            {getArticle.titre}
+            </h2>
+            <div className="card-body">
+              <p className="text-center fs-5">{getArticle.content}</p>
+            </div>
+            <div className="card-footer bg-transparent border-secondary text-center">{getArticle.categorie}</div>
+          </div>
+        </div>
       </div>
-    </>
-  );
+    );
+  }
 };
 
 export default Article;
