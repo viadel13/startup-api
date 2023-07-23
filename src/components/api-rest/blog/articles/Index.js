@@ -172,8 +172,10 @@ const Articles = () => {
               spinner
             )}
           </div>
-          <Filter />
+
         </div>
+        {!load && articles.length >= 0 && <Filter />}
+      
       </div>
       <ModalDel
         show={show}
