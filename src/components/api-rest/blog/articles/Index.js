@@ -62,7 +62,6 @@ const Articles = () => {
     dispatch(fetchArticles());
     localStorage.removeItem("getArticle");
     // const socket = io("http://localhost:5000");
-
     const socket = io("https://api-blog-v7sl.onrender.com");
     socket.on("articleAdded", (newArticle) => {
       dispatch(AddArticles(newArticle));
@@ -156,7 +155,7 @@ const Articles = () => {
   return (
     <>
       <div>
-        <h2 className="display-5 mb-5 container">NOS ARTICLES</h2>
+        <h2 className={`display-5 mb-5 container`} style={{backgroundColor: "#2e93c211"}}>NOS ARTICLES</h2>
 
         <div
           className={` container ${load && "d-flex justify-content-center"} `}
@@ -174,7 +173,7 @@ const Articles = () => {
           </div>
 
         </div>
-        {!load && articles.length >= 0 && <Filter />}
+        {articles && <Filter />}
       
       </div>
       <ModalDel

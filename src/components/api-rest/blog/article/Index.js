@@ -29,10 +29,10 @@ const Article = () => {
 
   if (view) {
     return (
-      <div >
+      <>
         <Navbar />
         <div className={styles.article}>
-        <h2 className="display-5 mb-5 container ">ARTICLE</h2>
+        <h2 className="display-5 mb-5 container" style={{backgroundColor: "#2e93c211"}} >ARTICLE</h2>
           <div className={`container card`}>
             
             <h2 className={` text-center ${styles.h2}`}>
@@ -44,7 +44,7 @@ const Article = () => {
             <div className="card-footer bg-transparent border-secondary text-center">{getArticle.categorie}</div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 };

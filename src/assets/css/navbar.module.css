@@ -1,3 +1,8 @@
 .nav{
     box-shadow: 1px 2px 3px 1px rgb(189, 185, 185);
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9; /* Couleur de fond de l'en-tête collant (facultatif) */
+    color: #2e93c2;
+    z-index: 999;
 }

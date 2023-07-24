@@ -6,10 +6,10 @@ import { IoCreateOutline } from "react-icons/io5";
 
 const Navbar = () => {
   return (
-    <>
-      <nav className={`navbar bg-light fixed-top ${styles.nav} `} >
+    <div className={styles.nav} >
+      <nav className={`navbar bg-light `} >
         <div className="container-fluid d-flex justify-content-center">
-          <Link className="navbar-brand fs-2" to="/">
+          <Link className="navbar-brand fs-2" to="/blog">
             API-BLOG
           </Link>
 
@@ -82,7 +82,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

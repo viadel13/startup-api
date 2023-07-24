@@ -39,7 +39,7 @@ const CreateArticles = () => {
 
   return (
     <>
-     <h2 className="display-5 container "> Nouvel article</h2>
+     <h2 className="display-5 container"  style={{backgroundColor: "#2e93c211"}} > Nouvel article</h2>
        <div className={`container py-4 ${styles.create}`}>
      
       <form onSubmit={handleSubmit}>

@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
+
 const initialState = {
    articles : [],
    selectApi: '',
@@ -26,6 +27,11 @@ const blogSlice = createSlice({
         showArticle: (state, action)=>{
            state.article = action.payload;
            state.load = false;
+        },
+        showArticleCat: (state, action)=>{
+            // console.log('mon action', action)
+            state.articles = action.payload;
+            state.load = false;
         },
         AddArticles: (state, action)=>{
             state.articles = [...state.articles, action.payload];
@@ -58,7 +64,7 @@ const blogSlice = createSlice({
     }
 })
 
-export const {showArticles, SelectApiValue, AddArticles, dropArticle, showArticle, editArticle} = blogSlice.actions;
+export const {showArticles, SelectApiValue, AddArticles, dropArticle, showArticle, editArticle, showArticleCat} = blogSlice.actions;
 
 
 export const fecthAddArticle = (datas)=> async()=>{
@@ -91,6 +97,16 @@ export const fetchArticle = (datas)=> async (dispatch)=>{
         const response = await axios.get(`https://api-blog-v7sl.onrender.com/articles/${datas}`);
         // const response  = await axios.get(`http://127.0.0.1:5000/articles/${datas}`);
         dispatch(showArticle(response.data));
+
+    } catch (error) {
+        
+    }
+}
+export const fetchArticleCat = (datas)=> async (dispatch)=>{
+    try {
+        const response = await axios.get(`https://api-blog-v7sl.onrender.com/articlesCat/${datas}`);
+        // const response  = await axios.get(`http://127.0.0.1:5000/articlesCat/${datas}`);
+        dispatch(showArticleCat(response.data));
 
     } catch (error) {
         

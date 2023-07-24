@@ -55,7 +55,7 @@ const Editer = () => {
         <Navbar />
  
         <div className={` container ${styles.editer}`}>
-          <h2 className="display-5 mb-5"> Editer article :<span className="text-success fs-1 "> {articles.titre}</span></h2>
+          <h2 className="display-5 mb-5"  style={{backgroundColor: "#2e93c211"}}  > Editer article :<span className="text-success fs-1 "> {articles.titre}</span></h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group mb-4">
               <label htmlFor="inputTitre" className="mb-2">
