@@ -19,7 +19,7 @@ const CreateArticles = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(titre && categorie && content){
-      dispatch(fecthAddArticle({titre, categorie, content}));
+      dispatch(fecthAddArticle({titre, categorie: categorie.toLowerCase, content}));
       setCategorie('');
       setTitre('');
       setContent('');
